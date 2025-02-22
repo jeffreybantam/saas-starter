@@ -4,11 +4,12 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "db:setup": "npx tsx lib/db/setup.ts",
-    "db:seed": "npx tsx lib/db/seed.ts",
-    "db:generate": "drizzle-kit generate",
+    "db:setup": "npx tsx src/db/setup.ts",
+    "db:seed": "npx tsx src/db/seed.ts",
+    "db:generate": "dotenv -e .env drizzle-kit generate:pg",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:push": "dotenv -e .env drizzle-kit push:pg",
+    "db:studio": "dotenv -e .env drizzle-kit studio --port 5555"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.2",
@@ -29,8 +30,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
-    "drizzle-kit": "^0.30.4",
-    "drizzle-orm": "^0.39.1",
+    "drizzle-orm": "^0.39.3",
     "jose": "^5.9.6",
     "lucide-react": "^0.474.0",
     "next": "15.2.0-canary.33",
@@ -46,5 +46,10 @@
     "tailwindcss-react-aria-components": "1.2.0",
     "typescript": "^5.7.3",
     "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.11",
+    "dotenv-cli": "^8.0.0",
+    "drizzle-kit": "^0.30.4"
   }
 }
